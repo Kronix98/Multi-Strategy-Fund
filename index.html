@@ -1,5 +1,3 @@
-git clone https://github.com/Kronix98/Multi-Strategy-Fund.git
-cd Multi-Strategy-Fund
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,78 +13,34 @@ cd Multi-Strategy-Fund
       flex-direction: column;
       align-items: center;
       font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
-      /* Remove old background gradient */
-      background: #f5f7fa;
-      position: relative;
-      overflow-x: hidden;
+      background: #f9fafb;
     }
-    /* Modern, sleek background using gradients and shapes */
-    .background-art {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(32px);
-      opacity: 0.6;
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-    .blob1 {
-      background: radial-gradient(circle at 30% 10%, #7b4fff 0%, #8a7cf6 80%, transparent 100%);
-      width: 560px;
-      height: 520px;
-      top: -160px;
-      left: -180px;
-      opacity: 0.55;
-    }
-    .blob2 {
-      background: radial-gradient(circle at 75% 80%, #2cb67d 0%, #6ee7b7 80%, transparent 100%);
-      width: 420px;
-      height: 350px;
-      right: -130px;
-      bottom: -110px;
-      opacity: 0.45;
-    }
-    .blob3 {
-      background: radial-gradient(circle at 70% 15%, #ffb800 0%, #ffe066 90%, transparent 100%);
-      width: 220px;
-      height: 170px;
-      top: 55px;
-      right: 12vw;
-      opacity: 0.28;
-    }
-    .blob4 {
-      background: radial-gradient(circle at 40% 60%, #2d6cdf 0%, #a3bffa 90%, transparent 100%);
-      width: 320px;
-      height: 270px;
-      left: 10vw;
-      bottom: 15vh;
-      opacity: 0.23;
-    }
-    /* Content sits above background */
-    header, main {
-      position: relative;
-      z-index: 1;
+    .subtitle {
+      font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
+      font-size: 1.08rem;
+      font-weight: 400;
+      color: #7b7b93;
+      margin-top: 18px;    /* Increased margin to move subtitle lower */
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+      text-align: center;
+      opacity: 0.89;
+      font-style: italic;
     }
     header {
       width: 100%;
-      padding: 60px 0 20px 0;
+      padding: 56px 0 10px 0;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
     h1 {
       margin: 0;
-      font-size: 3rem;
+      font-size: 2.6rem;
       font-weight: 700;
       letter-spacing: 2px;
-      color: #22223b;
-      text-shadow: 0 2px 8px rgba(100, 100, 150, 0.1);
+      color: #232334;
+      text-shadow: 0 2px 8px rgba(100, 100, 150, 0.05);
     }
     .top-row {
       display: flex;
@@ -102,41 +56,52 @@ cd Multi-Strategy-Fund
     .returns-section {
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(100, 100, 150, 0.08);
-      padding: 36px 28px 28px 28px;
-      min-width: 330px;
-      max-width: 400px;
+      box-shadow: 0 4px 22px rgba(100, 100, 150, 0.07);
+      padding: 34px 22px 22px 22px;
+      min-width: 320px;
+      max-width: 380px;
       flex: 1 1 0;
       text-align: center;
       transition: box-shadow 0.3s;
       display: flex;
       flex-direction: column;
       align-items: center;
-      backdrop-filter: blur(0.5px);
+      position: relative;
     }
     .returns-section:hover {
-      box-shadow: 0 8px 32px rgba(100, 100, 150, 0.15);
+      box-shadow: 0 8px 32px rgba(100, 100, 150, 0.13);
     }
     .returns-title {
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 600;
-      margin-bottom: 18px;
+      margin-bottom: 6px;
       color: #3a3d58;
       letter-spacing: 1px;
+    }
+    .returns-desc {
+      font-size: 0.98rem;
+      color: #6b6b7d;
+      margin-bottom: 20px;
+      margin-top: 2px;
+      font-weight: 400;
+      line-height: 1.5;
+      max-width: 90%;
+      text-align: center;
     }
     .returns-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 0 auto 16px auto;
+      margin: 0 auto 8px auto;
       background: #fafaff;
       border-radius: 6px;
       overflow: hidden;
+      font-size: 1rem;
     }
     .returns-table th,
     .returns-table td {
       padding: 7px 8px;
       border-bottom: 1px solid #e8eaf6;
-      font-size: 0.98rem;
+      font-size: 0.99rem;
       text-align: right;
     }
     .returns-table th {
@@ -146,49 +111,17 @@ cd Multi-Strategy-Fund
       text-align: right;
     }
     .returns-table td {
-      color: #38405a;
+      color: #b7b8c7;
+      font-weight: 500;
+      font-family: 'Fira Mono', 'Consolas', monospace;
     }
     .returns-table td:first-child, .returns-table th:first-child {
       text-align: left;
+      color: #38405a;
+      font-family: inherit;
     }
-    .chart-container {
-      margin: 0 auto 0.5em auto;
-      width: 100%;
-      max-width: 330px;
-      height: 200px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      position: relative;
-    }
-    .axis-labels-x {
-      width: 100%;
-      max-width: 300px;
-      margin: 0 auto 0.2em auto;
-      display: flex;
-      justify-content: space-between;
-      font-size: 1em;
-      color: #888;
-      letter-spacing: 0.5px;
-      pointer-events: none;
-      user-select: none;
-    }
-    .axis-labels-y {
-      position: absolute;
-      left: 0;
-      top: 36px;
-      bottom: 36px;
-      width: 2.8em;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-end;
-      font-size: 1em;
-      color: #888;
-      pointer-events: none;
-      user-select: none;
-      z-index: 2;
+    .returns-table tr:last-child td {
+      border-bottom: none;
     }
     /* Total Returns box below */
     .total-returns-row {
@@ -201,59 +134,19 @@ cd Multi-Strategy-Fund
     .total-returns-section {
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(100, 100, 150, 0.08);
-      padding: 36px 28px 28px 28px;
+      box-shadow: 0 4px 22px rgba(100, 100, 150, 0.07);
+      padding: 34px 22px 22px 22px;
       min-width: 320px;
-      max-width: 1100px;
+      max-width: 1050px;
       width: 100%;
       text-align: center;
       transition: box-shadow 0.3s;
       display: flex;
       flex-direction: column;
       align-items: center;
-      backdrop-filter: blur(0.5px);
     }
     .total-returns-section:hover {
-      box-shadow: 0 8px 32px rgba(100, 100, 150, 0.15);
-    }
-    .axis-labels-x-large {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto 0.2em auto;
-      display: flex;
-      justify-content: space-between;
-      font-size: 1.13em;
-      color: #888;
-      letter-spacing: 0.5px;
-      pointer-events: none;
-      user-select: none;
-    }
-    .axis-labels-y-large {
-      position: absolute;
-      left: 0;
-      top: 18px;
-      bottom: 36px;
-      width: 2.8em;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-end;
-      font-size: 1.13em;
-      color: #888;
-      pointer-events: none;
-      user-select: none;
-      z-index: 2;
-    }
-    .chart-container-large {
-      margin: 0 auto 0.5em auto;
-      width: 100%;
-      max-width: 900px;
-      height: 250px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      position: relative;
+      box-shadow: 0 8px 32px rgba(100, 100, 150, 0.12);
     }
     @media (max-width: 1100px) {
       .top-row {
@@ -262,44 +155,37 @@ cd Multi-Strategy-Fund
         gap: 28px;
       }
       .total-returns-section {
-        max-width: 95vw;
+        max-width: 97vw;
       }
-      .axis-labels-x-large, .chart-container-large { max-width: 95vw; }
     }
     @media (max-width: 600px) {
       h1 {
         font-size: 2rem;
       }
       .returns-section, .total-returns-section {
-        padding: 18px 8px 16px 8px;
+        padding: 17px 6px 12px 6px;
       }
       .returns-table th, .returns-table td {
         padding: 5px 2px;
-        font-size: 0.92rem;
+        font-size: 0.93rem;
       }
-      .chart-container, .axis-labels-x { max-width: 95vw; }
-      .chart-container-large, .axis-labels-x-large { max-width: 95vw; }
-      .blob1, .blob2, .blob3, .blob4 { display: none;}
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Modern, abstract background art -->
-  <div class="background-art" aria-hidden="true">
-    <div class="blob blob1"></div>
-    <div class="blob blob2"></div>
-    <div class="blob blob3"></div>
-    <div class="blob blob4"></div>
-  </div>
   <header>
     <h1>Multi Strategy Fund</h1>
+    <div class="subtitle">Traded by Milo Goldstein</div>
   </header>
   <main>
     <div class="top-row">
       <!-- Forex Box -->
       <section class="returns-section">
         <div class="returns-title">Forex</div>
+        <div class="returns-desc">
+          Short term positions held on EUR/USD based on technical and fundamental confluences.
+        </div>
         <table class="returns-table">
           <thead>
             <tr>
@@ -308,32 +194,28 @@ cd Multi-Strategy-Fund
             </tr>
           </thead>
           <tbody>
-            <tr><td>Aug 2025</td><td>+1.4%</td></tr>
-            <tr><td>Sep 2025</td><td>+0.7%</td></tr>
-            <tr><td>Oct 2025</td><td>-0.2%</td></tr>
-            <tr><td>Nov 2025</td><td>+2.1%</td></tr>
-            <tr><td>Dec 2025</td><td>+1.9%</td></tr>
-            <tr><td>Jan 2026</td><td>+0.3%</td></tr>
-            <tr><td>Feb 2026</td><td>+0.9%</td></tr>
-            <tr><td>Mar 2026</td><td>-0.8%</td></tr>
-            <tr><td>Apr 2026</td><td>+1.5%</td></tr>
-            <tr><td>May 2026</td><td>+2.3%</td></tr>
-            <tr><td>Jun 2026</td><td>+0.5%</td></tr>
-            <tr><td>Jul 2026</td><td>+1.8%</td></tr>
-            <tr><td>Aug 2026</td><td>+1.0%</td></tr>
+            <tr><td>Aug 2025</td><td>—</td></tr>
+            <tr><td>Sep 2025</td><td>—</td></tr>
+            <tr><td>Oct 2025</td><td>—</td></tr>
+            <tr><td>Nov 2025</td><td>—</td></tr>
+            <tr><td>Dec 2025</td><td>—</td></tr>
+            <tr><td>Jan 2026</td><td>—</td></tr>
+            <tr><td>Feb 2026</td><td>—</td></tr>
+            <tr><td>Mar 2026</td><td>—</td></tr>
+            <tr><td>Apr 2026</td><td>—</td></tr>
+            <tr><td>May 2026</td><td>—</td></tr>
+            <tr><td>Jun 2026</td><td>—</td></tr>
+            <tr><td>Jul 2026</td><td>—</td></tr>
+            <tr><td>Aug 2026</td><td>—</td></tr>
           </tbody>
         </table>
-        <div class="chart-container">
-          <div class="axis-labels-x">
-            <span>Aug 25</span><span>Nov</span><span>Feb 26</span><span>May</span><span>Aug 26</span>
-          </div>
-          <div class="axis-labels-y" id="y-axis-forex"></div>
-          <canvas id="forexChart" width="300" height="140"></canvas>
-        </div>
       </section>
       <!-- Investments Box -->
       <section class="returns-section">
         <div class="returns-title">Investments</div>
+        <div class="returns-desc">
+          Long term investments with a target holding of 5+ years.
+        </div>
         <table class="returns-table">
           <thead>
             <tr>
@@ -342,32 +224,28 @@ cd Multi-Strategy-Fund
             </tr>
           </thead>
           <tbody>
-            <tr><td>Aug 2025</td><td>+2.0%</td></tr>
-            <tr><td>Sep 2025</td><td>+1.1%</td></tr>
-            <tr><td>Oct 2025</td><td>+0.9%</td></tr>
-            <tr><td>Nov 2025</td><td>+0.6%</td></tr>
-            <tr><td>Dec 2025</td><td>+1.8%</td></tr>
-            <tr><td>Jan 2026</td><td>+2.6%</td></tr>
-            <tr><td>Feb 2026</td><td>+1.3%</td></tr>
-            <tr><td>Mar 2026</td><td>-0.4%</td></tr>
-            <tr><td>Apr 2026</td><td>+0.2%</td></tr>
-            <tr><td>May 2026</td><td>+1.7%</td></tr>
-            <tr><td>Jun 2026</td><td>+2.5%</td></tr>
-            <tr><td>Jul 2026</td><td>+0.4%</td></tr>
-            <tr><td>Aug 2026</td><td>+1.9%</td></tr>
+            <tr><td>Aug 2025</td><td>—</td></tr>
+            <tr><td>Sep 2025</td><td>—</td></tr>
+            <tr><td>Oct 2025</td><td>—</td></tr>
+            <tr><td>Nov 2025</td><td>—</td></tr>
+            <tr><td>Dec 2025</td><td>—</td></tr>
+            <tr><td>Jan 2026</td><td>—</td></tr>
+            <tr><td>Feb 2026</td><td>—</td></tr>
+            <tr><td>Mar 2026</td><td>—</td></tr>
+            <tr><td>Apr 2026</td><td>—</td></tr>
+            <tr><td>May 2026</td><td>—</td></tr>
+            <tr><td>Jun 2026</td><td>—</td></tr>
+            <tr><td>Jul 2026</td><td>—</td></tr>
+            <tr><td>Aug 2026</td><td>—</td></tr>
           </tbody>
         </table>
-        <div class="chart-container">
-          <div class="axis-labels-x">
-            <span>Aug 25</span><span>Nov</span><span>Feb 26</span><span>May</span><span>Aug 26</span>
-          </div>
-          <div class="axis-labels-y" id="y-axis-investments"></div>
-          <canvas id="investmentsChart" width="300" height="140"></canvas>
-        </div>
       </section>
       <!-- Earnings Trading Box -->
       <section class="returns-section">
         <div class="returns-title">Earnings Trading</div>
+        <div class="returns-desc">
+          Event-driven strategy leveraging volatility surrounding earnings announcements, capturing short-medium term price changes.
+        </div>
         <table class="returns-table">
           <thead>
             <tr>
@@ -376,34 +254,30 @@ cd Multi-Strategy-Fund
             </tr>
           </thead>
           <tbody>
-            <tr><td>Aug 2025</td><td>+0.8%</td></tr>
-            <tr><td>Sep 2025</td><td>-0.3%</td></tr>
-            <tr><td>Oct 2025</td><td>+1.5%</td></tr>
-            <tr><td>Nov 2025</td><td>+2.6%</td></tr>
-            <tr><td>Dec 2025</td><td>+1.0%</td></tr>
-            <tr><td>Jan 2026</td><td>+1.7%</td></tr>
-            <tr><td>Feb 2026</td><td>+2.1%</td></tr>
-            <tr><td>Mar 2026</td><td>+0.5%</td></tr>
-            <tr><td>Apr 2026</td><td>-0.6%</td></tr>
-            <tr><td>May 2026</td><td>+1.9%</td></tr>
-            <tr><td>Jun 2026</td><td>+0.2%</td></tr>
-            <tr><td>Jul 2026</td><td>+2.0%</td></tr>
-            <tr><td>Aug 2026</td><td>+1.2%</td></tr>
+            <tr><td>Aug 2025</td><td>—</td></tr>
+            <tr><td>Sep 2025</td><td>—</td></tr>
+            <tr><td>Oct 2025</td><td>—</td></tr>
+            <tr><td>Nov 2025</td><td>—</td></tr>
+            <tr><td>Dec 2025</td><td>—</td></tr>
+            <tr><td>Jan 2026</td><td>—</td></tr>
+            <tr><td>Feb 2026</td><td>—</td></tr>
+            <tr><td>Mar 2026</td><td>—</td></tr>
+            <tr><td>Apr 2026</td><td>—</td></tr>
+            <tr><td>May 2026</td><td>—</td></tr>
+            <tr><td>Jun 2026</td><td>—</td></tr>
+            <tr><td>Jul 2026</td><td>—</td></tr>
+            <tr><td>Aug 2026</td><td>—</td></tr>
           </tbody>
         </table>
-        <div class="chart-container">
-          <div class="axis-labels-x">
-            <span>Aug 25</span><span>Nov</span><span>Feb 26</span><span>May</span><span>Aug 26</span>
-          </div>
-          <div class="axis-labels-y" id="y-axis-earnings"></div>
-          <canvas id="earningsChart" width="300" height="140"></canvas>
-        </div>
       </section>
     </div>
     <!-- Total Returns Box Below -->
     <div class="total-returns-row">
       <section class="total-returns-section">
         <div class="returns-title">Total Returns</div>
+        <div class="returns-desc">
+          An equally weighted representation of the above 3 strategies reflecting an overall performance of the fund.
+        </div>
         <table class="returns-table">
           <thead>
             <tr>
@@ -412,168 +286,23 @@ cd Multi-Strategy-Fund
             </tr>
           </thead>
           <tbody>
-            <tr><td>Aug 2025</td><td>+1.4%</td></tr>
-            <tr><td>Sep 2025</td><td>+0.5%</td></tr>
-            <tr><td>Oct 2025</td><td>+0.7%</td></tr>
-            <tr><td>Nov 2025</td><td>+1.8%</td></tr>
-            <tr><td>Dec 2025</td><td>+1.6%</td></tr>
-            <tr><td>Jan 2026</td><td>+1.5%</td></tr>
-            <tr><td>Feb 2026</td><td>+1.4%</td></tr>
-            <tr><td>Mar 2026</td><td>-0.2%</td></tr>
-            <tr><td>Apr 2026</td><td>+0.4%</td></tr>
-            <tr><td>May 2026</td><td>+2.0%</td></tr>
-            <tr><td>Jun 2026</td><td>+1.1%</td></tr>
-            <tr><td>Jul 2026</td><td>+1.4%</td></tr>
-            <tr><td>Aug 2026</td><td>+1.3%</td></tr>
+            <tr><td>Aug 2025</td><td>—</td></tr>
+            <tr><td>Sep 2025</td><td>—</td></tr>
+            <tr><td>Oct 2025</td><td>—</td></tr>
+            <tr><td>Nov 2025</td><td>—</td></tr>
+            <tr><td>Dec 2025</td><td>—</td></tr>
+            <tr><td>Jan 2026</td><td>—</td></tr>
+            <tr><td>Feb 2026</td><td>—</td></tr>
+            <tr><td>Mar 2026</td><td>—</td></tr>
+            <tr><td>Apr 2026</td><td>—</td></tr>
+            <tr><td>May 2026</td><td>—</td></tr>
+            <tr><td>Jun 2026</td><td>—</td></tr>
+            <tr><td>Jul 2026</td><td>—</td></tr>
+            <tr><td>Aug 2026</td><td>—</td></tr>
           </tbody>
         </table>
-        <div class="chart-container-large">
-          <div class="axis-labels-x-large">
-            <span>Aug 25</span><span>Nov</span><span>Feb 26</span><span>May</span><span>Aug 26</span>
-          </div>
-          <div class="axis-labels-y-large" id="y-axis-total"></div>
-          <canvas id="totalReturnsChart" width="880" height="170"></canvas>
-        </div>
       </section>
     </div>
   </main>
-  <script>
-    // Data for charts
-    const months = [
-      "Aug 2025","Sep 2025","Oct 2025","Nov 2025","Dec 2025","Jan 2026","Feb 2026","Mar 2026","Apr 2026","May 2026","Jun 2026","Jul 2026","Aug 2026"
-    ];
-    const forexData = [1.4, 0.7, -0.2, 2.1, 1.9, 0.3, 0.9, -0.8, 1.5, 2.3, 0.5, 1.8, 1.0];
-    const investmentsData = [2.0, 1.1, 0.9, 0.6, 1.8, 2.6, 1.3, -0.4, 0.2, 1.7, 2.5, 0.4, 1.9];
-    const earningsData = [0.8, -0.3, 1.5, 2.6, 1.0, 1.7, 2.1, 0.5, -0.6, 1.9, 0.2, 2.0, 1.2];
-    const totalData = [1.4, 0.5, 0.7, 1.8, 1.6, 1.5, 1.4, -0.2, 0.4, 2.0, 1.1, 1.4, 1.3];
-
-    function getNiceTicks(data) {
-      const min = Math.min(...data);
-      const max = Math.max(...data);
-      // Calculate some padding so points never go above the last x label
-      let minTick = Math.floor(min) - 1;
-      let maxTick = Math.ceil(max) + 1;
-      if (minTick === maxTick) maxTick = minTick + 1;
-      return [minTick, maxTick];
-    }
-
-    function setYAxisLabels(id, data) {
-      const [min, max] = getNiceTicks(data);
-      const mid = ((min + max) / 2).toFixed(1);
-      const axis = document.getElementById(id);
-      axis.innerHTML = `<span>+${max}%</span><span>${mid > 0 ? '+' : ''}${mid}%</span><span>${min > 0 ? '+' : ''}${min}%</span>`;
-    }
-
-    setYAxisLabels("y-axis-forex", forexData);
-    setYAxisLabels("y-axis-investments", investmentsData);
-    setYAxisLabels("y-axis-earnings", earningsData);
-    setYAxisLabels("y-axis-total", totalData);
-
-    // Draw charts using Chart.js
-    function makeChart(id, data, borderColor, bgColor) {
-      const [minTick, maxTick] = getNiceTicks(data);
-      const ctx = document.getElementById(id).getContext('2d');
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: months,
-          datasets: [{
-            data: data,
-            borderColor: borderColor,
-            backgroundColor: bgColor,
-            fill: false,
-            pointBackgroundColor: borderColor,
-            pointBorderColor: "#fff",
-            pointRadius: 5,
-            pointHoverRadius: 7,
-            tension: 0.4
-          }]
-        },
-        options: {
-          responsive: false,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false }
-          },
-          layout: {
-            padding: {
-              top: 20,
-              bottom: 25,
-              left: 0,
-              right: 0
-            }
-          },
-          scales: {
-            x: {
-              display: false
-            },
-            y: {
-              display: false,
-              min: minTick,
-              max: maxTick
-            }
-          },
-          elements: {
-            line: { borderWidth: 3 }
-          }
-        }
-      });
-    }
-
-    makeChart("forexChart", forexData, "#7b4fff", "#ede9fe");
-    makeChart("investmentsChart", investmentsData, "#2cb67d", "#e6fcf3");
-    makeChart("earningsChart", earningsData, "#ffb800", "#fff6e0");
-    // Large total returns chart
-    function makeLargeChart(id, data, borderColor, bgColor) {
-      const [minTick, maxTick] = getNiceTicks(data);
-      const ctx = document.getElementById(id).getContext('2d');
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: months,
-          datasets: [{
-            data: data,
-            borderColor: borderColor,
-            backgroundColor: bgColor,
-            fill: false,
-            pointBackgroundColor: borderColor,
-            pointBorderColor: "#fff",
-            pointRadius: 6,
-            pointHoverRadius: 8,
-            tension: 0.4
-          }]
-        },
-        options: {
-          responsive: false,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false }
-          },
-          layout: {
-            padding: {
-              top: 30,
-              bottom: 30,
-              left: 0,
-              right: 0
-            }
-          },
-          scales: {
-            x: {
-              display: false
-            },
-            y: {
-              display: false,
-              min: minTick,
-              max: maxTick
-            }
-          },
-          elements: {
-            line: { borderWidth: 3.5 }
-          }
-        }
-      });
-    }
-    makeLargeChart("totalReturnsChart", totalData, "#2d6cdf", "#e0e7ff");
-  </script>
 </body>
 </html>
