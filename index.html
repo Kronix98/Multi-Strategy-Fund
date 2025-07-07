@@ -20,7 +20,7 @@
       font-size: 1.08rem;
       font-weight: 400;
       color: #7b7b93;
-      margin-top: 18px;    /* Increased margin to move subtitle lower */
+      margin-top: 18px;
       margin-bottom: 12px;
       letter-spacing: 0.02em;
       text-align: center;
@@ -42,6 +42,44 @@
       color: #232334;
       text-shadow: 0 2px 8px rgba(100, 100, 150, 0.05);
     }
+    .top-row-container {
+      margin-top: 40px;
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .descriptions-row {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 32px;
+      max-width: 1200px;
+      margin-bottom: 0;
+    }
+    .desc-col {
+      flex: 1 1 0;
+      min-width: 320px;
+      max-width: 380px;
+      text-align: center;
+      font-size: 0.98rem;
+      color: #6b6b7d;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      padding: 0 10px;
+      box-sizing: border-box;
+      background: none;
+      border: none;
+      min-height: 56px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      font-style: italic;
+      font-weight: bold;
+    }
     .top-row {
       display: flex;
       flex-direction: row;
@@ -50,7 +88,7 @@
       width: 100%;
       max-width: 1200px;
       gap: 32px;
-      margin-top: 40px;
+      margin-top: 0;
       flex-wrap: wrap;
     }
     .returns-section {
@@ -77,16 +115,6 @@
       margin-bottom: 6px;
       color: #3a3d58;
       letter-spacing: 1px;
-    }
-    .returns-desc {
-      font-size: 0.98rem;
-      color: #6b6b7d;
-      margin-bottom: 20px;
-      margin-top: 2px;
-      font-weight: 400;
-      line-height: 1.5;
-      max-width: 90%;
-      text-align: center;
     }
     .returns-table {
       width: 100%;
@@ -124,12 +152,32 @@
       border-bottom: none;
     }
     /* Total Returns box below */
-    .total-returns-row {
+    .total-returns-area {
       width: 100%;
       display: flex;
-      justify-content: center;
-      margin-top: 36px;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 46px;
       margin-bottom: 40px;
+    }
+    .total-desc {
+      width: 100%;
+      max-width: 510px;
+      font-size: 0.98rem;
+      color: #6b6b7d;
+      font-style: italic;
+      font-weight: bold;
+      line-height: 1.5;
+      margin-bottom: 8px;
+      text-align: center;
+      min-height: 24px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0 10px;
+      box-sizing: border-box;
+      background: none;
+      border: none;
     }
     .total-returns-section {
       background: #fff;
@@ -137,24 +185,33 @@
       box-shadow: 0 4px 22px rgba(100, 100, 150, 0.07);
       padding: 34px 22px 22px 22px;
       min-width: 320px;
-      max-width: 1050px;
+      max-width: 510px;
       width: 100%;
       text-align: center;
       transition: box-shadow 0.3s;
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 0 auto;
     }
     .total-returns-section:hover {
       box-shadow: 0 8px 32px rgba(100, 100, 150, 0.12);
     }
     @media (max-width: 1100px) {
+      .descriptions-row,
       .top-row {
         flex-direction: column;
         align-items: center;
-        gap: 28px;
+        gap: 0;
+      }
+      .desc-col {
+        margin-bottom: 14px;
+        min-height: 0;
       }
       .total-returns-section {
+        max-width: 97vw;
+      }
+      .total-desc {
         max-width: 97vw;
       }
     }
@@ -179,105 +236,109 @@
     <div class="subtitle">Traded by Milo Goldstein</div>
   </header>
   <main>
-    <div class="top-row">
-      <!-- Forex Box -->
-      <section class="returns-section">
-        <div class="returns-title">Forex</div>
-        <div class="returns-desc">
-          Short term positions held on EUR/USD based on technical and fundamental confluences.
+    <div class="top-row-container">
+      <div class="descriptions-row">
+        <div class="desc-col">
+          <b><i>Short term positions held on EUR/USD based on technical and fundamental confluences.</i></b>
         </div>
-        <table class="returns-table">
-          <thead>
-            <tr>
-              <th>Month</th>
-              <th>Return</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Aug 2025</td><td>—</td></tr>
-            <tr><td>Sep 2025</td><td>—</td></tr>
-            <tr><td>Oct 2025</td><td>—</td></tr>
-            <tr><td>Nov 2025</td><td>—</td></tr>
-            <tr><td>Dec 2025</td><td>—</td></tr>
-            <tr><td>Jan 2026</td><td>—</td></tr>
-            <tr><td>Feb 2026</td><td>—</td></tr>
-            <tr><td>Mar 2026</td><td>—</td></tr>
-            <tr><td>Apr 2026</td><td>—</td></tr>
-            <tr><td>May 2026</td><td>—</td></tr>
-            <tr><td>Jun 2026</td><td>—</td></tr>
-            <tr><td>Jul 2026</td><td>—</td></tr>
-            <tr><td>Aug 2026</td><td>—</td></tr>
-          </tbody>
-        </table>
-      </section>
-      <!-- Investments Box -->
-      <section class="returns-section">
-        <div class="returns-title">Investments</div>
-        <div class="returns-desc">
-          Long term investments with a target holding of 5+ years.
+        <div class="desc-col">
+          <b><i>Long term investments with a target holding of 5+ years.</i></b>
         </div>
-        <table class="returns-table">
-          <thead>
-            <tr>
-              <th>Month</th>
-              <th>Return</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Aug 2025</td><td>—</td></tr>
-            <tr><td>Sep 2025</td><td>—</td></tr>
-            <tr><td>Oct 2025</td><td>—</td></tr>
-            <tr><td>Nov 2025</td><td>—</td></tr>
-            <tr><td>Dec 2025</td><td>—</td></tr>
-            <tr><td>Jan 2026</td><td>—</td></tr>
-            <tr><td>Feb 2026</td><td>—</td></tr>
-            <tr><td>Mar 2026</td><td>—</td></tr>
-            <tr><td>Apr 2026</td><td>—</td></tr>
-            <tr><td>May 2026</td><td>—</td></tr>
-            <tr><td>Jun 2026</td><td>—</td></tr>
-            <tr><td>Jul 2026</td><td>—</td></tr>
-            <tr><td>Aug 2026</td><td>—</td></tr>
-          </tbody>
-        </table>
-      </section>
-      <!-- Earnings Trading Box -->
-      <section class="returns-section">
-        <div class="returns-title">Earnings Trading</div>
-        <div class="returns-desc">
-          Event-driven strategy leveraging volatility surrounding earnings announcements, capturing short-medium term price changes.
+        <div class="desc-col">
+          <b><i>Event-driven strategy leveraging volatility surrounding earnings announcements, capturing short-medium term price changes.</i></b>
         </div>
-        <table class="returns-table">
-          <thead>
-            <tr>
-              <th>Month</th>
-              <th>Return</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Aug 2025</td><td>—</td></tr>
-            <tr><td>Sep 2025</td><td>—</td></tr>
-            <tr><td>Oct 2025</td><td>—</td></tr>
-            <tr><td>Nov 2025</td><td>—</td></tr>
-            <tr><td>Dec 2025</td><td>—</td></tr>
-            <tr><td>Jan 2026</td><td>—</td></tr>
-            <tr><td>Feb 2026</td><td>—</td></tr>
-            <tr><td>Mar 2026</td><td>—</td></tr>
-            <tr><td>Apr 2026</td><td>—</td></tr>
-            <tr><td>May 2026</td><td>—</td></tr>
-            <tr><td>Jun 2026</td><td>—</td></tr>
-            <tr><td>Jul 2026</td><td>—</td></tr>
-            <tr><td>Aug 2026</td><td>—</td></tr>
-          </tbody>
-        </table>
-      </section>
+      </div>
+      <div class="top-row">
+        <!-- Forex Box -->
+        <section class="returns-section">
+          <div class="returns-title">Forex</div>
+          <table class="returns-table">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Return</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Aug 2025</td><td>—</td></tr>
+              <tr><td>Sep 2025</td><td>—</td></tr>
+              <tr><td>Oct 2025</td><td>—</td></tr>
+              <tr><td>Nov 2025</td><td>—</td></tr>
+              <tr><td>Dec 2025</td><td>—</td></tr>
+              <tr><td>Jan 2026</td><td>—</td></tr>
+              <tr><td>Feb 2026</td><td>—</td></tr>
+              <tr><td>Mar 2026</td><td>—</td></tr>
+              <tr><td>Apr 2026</td><td>—</td></tr>
+              <tr><td>May 2026</td><td>—</td></tr>
+              <tr><td>Jun 2026</td><td>—</td></tr>
+              <tr><td>Jul 2026</td><td>—</td></tr>
+              <tr><td>Aug 2026</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </section>
+        <!-- Investments Box -->
+        <section class="returns-section">
+          <div class="returns-title">Investments</div>
+          <table class="returns-table">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Return</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Aug 2025</td><td>—</td></tr>
+              <tr><td>Sep 2025</td><td>—</td></tr>
+              <tr><td>Oct 2025</td><td>—</td></tr>
+              <tr><td>Nov 2025</td><td>—</td></tr>
+              <tr><td>Dec 2025</td><td>—</td></tr>
+              <tr><td>Jan 2026</td><td>—</td></tr>
+              <tr><td>Feb 2026</td><td>—</td></tr>
+              <tr><td>Mar 2026</td><td>—</td></tr>
+              <tr><td>Apr 2026</td><td>—</td></tr>
+              <tr><td>May 2026</td><td>—</td></tr>
+              <tr><td>Jun 2026</td><td>—</td></tr>
+              <tr><td>Jul 2026</td><td>—</td></tr>
+              <tr><td>Aug 2026</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </section>
+        <!-- Earnings Trading Box -->
+        <section class="returns-section">
+          <div class="returns-title">Earnings Trading</div>
+          <table class="returns-table">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Return</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Aug 2025</td><td>—</td></tr>
+              <tr><td>Sep 2025</td><td>—</td></tr>
+              <tr><td>Oct 2025</td><td>—</td></tr>
+              <tr><td>Nov 2025</td><td>—</td></tr>
+              <tr><td>Dec 2025</td><td>—</td></tr>
+              <tr><td>Jan 2026</td><td>—</td></tr>
+              <tr><td>Feb 2026</td><td>—</td></tr>
+              <tr><td>Mar 2026</td><td>—</td></tr>
+              <tr><td>Apr 2026</td><td>—</td></tr>
+              <tr><td>May 2026</td><td>—</td></tr>
+              <tr><td>Jun 2026</td><td>—</td></tr>
+              <tr><td>Jul 2026</td><td>—</td></tr>
+              <tr><td>Aug 2026</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
     </div>
     <!-- Total Returns Box Below -->
-    <div class="total-returns-row">
+    <div class="total-returns-area">
+      <div class="total-desc">
+        <b><i>An equally weighted representation of the above 3 strategies reflecting an overall performance of the fund.</i></b>
+      </div>
       <section class="total-returns-section">
         <div class="returns-title">Total Returns</div>
-        <div class="returns-desc">
-          An equally weighted representation of the above 3 strategies reflecting an overall performance of the fund.
-        </div>
         <table class="returns-table">
           <thead>
             <tr>
