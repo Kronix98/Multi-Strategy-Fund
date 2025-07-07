@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forex Trades Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      min-height: 100vh;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 6px 28px rgba(100, 100, 150, 0.09);
+      padding: 32px 24px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-top: 0;
+      color: #2d355d;
+      margin-bottom: 18px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 22px;
+      text-decoration: none;
+      background: #e3ebfb;
+      color: #2d6cdf;
+      padding: 7px 18px;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background 0.18s;
+    }
+    .back-link:hover {
+      background: #c7d6ef;
+    }
+    .trades-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto 8px auto;
+      background: #fafaff;
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 1rem;
+      box-shadow: 0 0 0 1px #e8eaf6;
+    }
+    .trades-table th, .trades-table td {
+      padding: 10px 8px;
+      border-bottom: 1px solid #e8eaf6;
+      font-size: 1rem;
+      text-align: center;
+    }
+    .trades-table th {
+      background: #edf2fb;
+      color: #22223b;
+      font-weight: 600;
+    }
+    .trades-table td {
+      color: #38405a;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+    }
+    .trades-table tr:last-child td {
+      border-bottom: none;
+    }
+    .placeholder {
+      color: #b7b8c7;
+      font-size: 1.08rem;
+      font-style: italic;
+      margin-top: 40px;
+      text-align: center;
+    }
+    @media (max-width: 700px) {
+      .container {
+        padding: 10px 2px;
+      }
+      .trades-table th, .trades-table td {
+        padding: 6px 2px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">&larr; Back to Home</a>
+    <h1>Forex Trades Details</h1>
+    <table class="trades-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Instrument</th>
+          <th>Lots</th>
+          <th>Open Price</th>
+          <th>Close Price</th>
+          <th>Trade Duration</th>
+          <th>%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Example empty row, replace with your trade data -->
+        <tr>
+          <td colspan="7" style="color:#b7b8c7; font-style:italic;">No trades to display yet.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
