@@ -228,18 +228,18 @@
     }
     .chartjs-container {
       width: 100%;
-      max-width: 900px;
-      margin: 32px auto 0 auto;
+      max-width: 1200px;
+      margin: 48px auto 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       border-radius: 16px;
       background: #f9f7ea;
       box-shadow: 0 4px 22px rgba(100, 100, 150, 0.07);
-      padding: 24px;
+      padding: 32px;
       border: 2px solid #c00;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 1200px) {
       .chartjs-container {
         max-width: 98vw;
         padding: 10px;
@@ -391,7 +391,7 @@
         </section>
       </div>
       <div class="chartjs-container">
-        <canvas id="monthlyReturnsChart" width="900" height="500"></canvas>
+        <canvas id="monthlyReturnsChart" width="1200" height="700"></canvas>
       </div>
     </div>
   </main>
@@ -422,7 +422,7 @@
           title: {
             display: true,
             text: 'Monthly Returns',
-            font: { size: 28 }
+            font: { size: 36 }
           },
           legend: { display: false }
         },
@@ -431,10 +431,10 @@
             title: {
               display: true,
               text: 'Date',
-              font: { size: 18 }
+              font: { size: 24 }
             },
             ticks: {
-              font: { size: 16 },
+              font: { size: 20 },
               color: '#222'
             },
             grid: {
@@ -446,13 +446,13 @@
             title: {
               display: true,
               text: '%',
-              font: { size: 18 }
+              font: { size: 24 }
             },
             min: -50,
             max: 50,
             ticks: {
               stepSize: 5,
-              font: { size: 16 },
+              font: { size: 20 },
               callback: function(value) { return value + '%'; },
               color: '#222'
             },
@@ -482,7 +482,7 @@
           ctx.beginPath();
           ctx.moveTo(chart.scales.x.left, zeroY);
           ctx.lineTo(chart.scales.x.right, zeroY);
-          ctx.lineWidth = 4;
+          ctx.lineWidth = 6;
           ctx.strokeStyle = '#222';
           ctx.stroke();
           ctx.restore();
