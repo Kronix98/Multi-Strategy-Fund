@@ -182,10 +182,12 @@
     .total-returns-area {
       width: 100%;
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-direction: row; /* Change to row for graph placement */
+      align-items: flex-start;
+      justify-content: center;
       margin-top: 46px;
       margin-bottom: 40px;
+      gap: 36px;
     }
     .total-desc {
       width: 100%;
@@ -225,37 +227,46 @@
     .total-returns-section:hover {
       box-shadow: 0 8px 32px rgba(100, 100, 150, 0.12);
     }
-    @media (max-width: 1100px) {
-      .descriptions-row,
-      .top-row {
+    .graph-container {
+      min-width: 370px;
+      max-width: 440px;
+      width: 100%;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 22px rgba(100, 100, 150, 0.07);
+      padding: 34px 22px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .graph-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #3a3d58;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    @media (max-width: 1200px) {
+      .total-returns-area {
         flex-direction: column;
         align-items: center;
-        gap: 0;
+        gap: 18px;
       }
-      .desc-col {
-        margin-bottom: 14px;
-        min-height: 0;
-      }
-      .total-returns-section {
-        max-width: 97vw;
-      }
-      .total-desc {
+      .graph-container, .total-returns-section {
         max-width: 97vw;
       }
     }
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      .returns-section, .total-returns-section {
+    @media (max-width: 700px) {
+      .graph-container, .total-returns-section {
         padding: 17px 6px 12px 6px;
-      }
-      .returns-table th, .returns-table td {
-        padding: 5px 2px;
-        font-size: 0.93rem;
       }
     }
   </style>
+  <!-- Chart.js for easy graph rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
@@ -365,39 +376,86 @@
         </section>
       </div>
     </div>
-    <!-- Total Returns Box Below -->
+    <!-- Total Returns and Graph Side-by-side -->
     <div class="total-returns-area">
-      <div class="total-desc">
-        <b><i>An equally weighted representation of the above 3 strategies reflecting an overall performance of the fund.</i></b>
+      <div style="flex:1; max-width:510px;">
+        <div class="total-desc">
+          <b><i>An equally weighted representation of the above 3 strategies reflecting an overall performance of the fund.</i></b>
+        </div>
+        <section class="total-returns-section">
+          <div class="returns-title">Total Returns</div>
+          <table class="returns-table">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Return</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Jul 2025</td><td>—</td></tr>
+              <tr><td>Aug 2025</td><td>—</td></tr>
+              <tr><td>Sep 2025</td><td>—</td></tr>
+              <tr><td>Oct 2025</td><td>—</td></tr>
+              <tr><td>Nov 2025</td><td>—</td></tr>
+              <tr><td>Dec 2025</td><td>—</td></tr>
+              <tr><td>Jan 2026</td><td>—</td></tr>
+              <tr><td>Feb 2026</td><td>—</td></tr>
+              <tr><td>Mar 2026</td><td>—</td></tr>
+              <tr><td>Apr 2026</td><td>—</td></tr>
+              <tr><td>May 2026</td><td>—</td></tr>
+              <tr><td>Jun 2026</td><td>—</td></tr>
+              <tr><td>Jul 2026</td><td>—</td></tr>
+              <tr><td>Aug 2026</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </section>
       </div>
-      <section class="total-returns-section">
-        <div class="returns-title">Total Returns</div>
-        <table class="returns-table">
-          <thead>
-            <tr>
-              <th>Month</th>
-              <th>Return</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Jul 2025</td><td>—</td></tr>
-            <tr><td>Aug 2025</td><td>—</td></tr>
-            <tr><td>Sep 2025</td><td>—</td></tr>
-            <tr><td>Oct 2025</td><td>—</td></tr>
-            <tr><td>Nov 2025</td><td>—</td></tr>
-            <tr><td>Dec 2025</td><td>—</td></tr>
-            <tr><td>Jan 2026</td><td>—</td></tr>
-            <tr><td>Feb 2026</td><td>—</td></tr>
-            <tr><td>Mar 2026</td><td>—</td></tr>
-            <tr><td>Apr 2026</td><td>—</td></tr>
-            <tr><td>May 2026</td><td>—</td></tr>
-            <tr><td>Jun 2026</td><td>—</td></tr>
-            <tr><td>Jul 2026</td><td>—</td></tr>
-            <tr><td>Aug 2026</td><td>—</td></tr>
-          </tbody>
-        </table>
-      </section>
+      <div class="graph-container">
+        <div class="graph-title">Total Returns Chart</div>
+        <canvas id="returnsChart" width="400" height="320"></canvas>
+      </div>
     </div>
   </main>
+  <script>
+    // Cartesian coordinate graph with Chart.js
+    const ctx = document.getElementById('returnsChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [
+          "Jul 2025", "Aug 2025", "Sep 2025", "Oct 2025", "Nov 2025", "Dec 2025",
+          "Jan 2026", "Feb 2026", "Mar 2026", "Apr 2026", "May 2026", "Jun 2026",
+          "Jul 2026", "Aug 2026"
+        ],
+        datasets: [{
+          label: '% Change',
+          data: [], // No line data yet
+          borderColor: '#2d6cdf',
+          backgroundColor: 'rgba(45,108,223,0.08)',
+          fill: false,
+          tension: 0.25,
+          pointRadius: 0
+        }]
+      },
+      options: {
+        responsive: false,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          x: {
+            title: { display: true, text: 'Month' },
+            ticks: { color: '#38405a' }
+          },
+          y: {
+            title: { display: true, text: '% Change' },
+            min: 0,
+            max: 10,
+            ticks: { stepSize: 1, color: '#38405a' }
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
