@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Multi Strategy Fund</title>
-  <!-- Stylish font for title: 'Playfair Display' from Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Fira+Mono:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -234,13 +233,13 @@
       background: #f9f7ea;
       border-radius: 16px;
       box-shadow: 0 4px 22px rgba(100, 100, 150, 0.07);
-      padding: 34px 22px 22px 52px; /* Shift the chart to the right */
+      padding: 34px 22px 22px 52px;
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-left: 0;
       margin-right: 0;
-      border: 2px solid #c00; /* Thin red border as in the image */
+      border: 2px solid #c00;
       position: relative;
     }
     .graph-title {
@@ -250,6 +249,28 @@
       letter-spacing: 1px;
       margin-bottom: 10px;
       text-align: center;
+    }
+    /* axis label styling */
+    .axis-label {
+      position: absolute;
+      color: #222;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      font-size: 1rem;
+      pointer-events: none;
+      user-select: none;
+      z-index: 10;
+    }
+    .axis-label.y-label {
+      left: 7px;
+      top: 55px;
+      transform: rotate(-90deg);
+      letter-spacing: 1px;
+    }
+    .axis-label.x-label {
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      letter-spacing: 1px;
     }
     @media (max-width: 1200px) {
       .total-returns-area {
@@ -267,7 +288,6 @@
       }
     }
   </style>
-  <!-- Chart.js for easy graph rendering -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -414,6 +434,8 @@
       </div>
       <div class="graph-container">
         <div class="graph-title">Total Returns</div>
+        <span class="axis-label y-label">%</span>
+        <span class="axis-label x-label">Date</span>
         <canvas id="returnsChart" width="340" height="300"></canvas>
       </div>
     </div>
@@ -445,7 +467,6 @@
       }
     });
 
-    // Cartesian coordinate graph with Chart.js
     const ctx = document.getElementById('returnsChart').getContext('2d');
     new Chart(ctx, {
       type: 'line',
@@ -457,7 +478,7 @@
         ],
         datasets: [{
           label: '% Change',
-          data: [], // No line data yet
+          data: [],
           borderColor: "#222",
           backgroundColor: "rgba(0,0,0,0)",
           pointBackgroundColor: "#222",
