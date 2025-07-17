@@ -181,12 +181,12 @@
     .total-returns-area {
       width: 100%;
       display: flex;
-      flex-direction: row;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
       margin-top: 46px;
       margin-bottom: 40px;
-      gap: 36px;
+      gap: 24px;
     }
     .total-desc {
       width: 100%;
@@ -237,10 +237,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-left: 0;
-      margin-right: 0;
+      margin: 0 auto;
       border: 2px solid #c00;
       position: relative;
+      margin-top: 0;
     }
     .graph-title {
       font-size: 1.25rem;
@@ -250,7 +250,6 @@
       margin-bottom: 10px;
       text-align: center;
     }
-    /* axis label styling */
     .axis-label {
       position: absolute;
       color: #222;
@@ -261,9 +260,11 @@
       z-index: 10;
     }
     .axis-label.y-label {
-      left: 7px;
-      top: 55px;
-      transform: rotate(-90deg);
+      left: 140px;
+      top: 38px;
+      font-weight: bold;
+      background: #f9f7ea;
+      padding: 0 4px;
       letter-spacing: 1px;
     }
     .axis-label.x-label {
@@ -285,6 +286,10 @@
     @media (max-width: 700px) {
       .graph-container, .total-returns-section {
         padding: 17px 6px 12px 6px;
+      }
+      .axis-label.y-label {
+        left: 70px;
+        top: 38px;
       }
     }
   </style>
@@ -398,9 +403,8 @@
         </section>
       </div>
     </div>
-    <!-- Total Returns and Graph Side-by-side -->
     <div class="total-returns-area">
-      <div style="flex:1; max-width:510px;">
+      <div style="width:100%;max-width:510px;">
         <div class="total-desc">
           <b><i>An equally weighted representation of the above 3 strategies reflecting an overall performance of the fund.</i></b>
         </div>
@@ -432,23 +436,21 @@
           </table>
         </section>
       </div>
-      <div class="graph-container">
+      <div class="graph-container" style="margin-top: -10px;">
         <div class="graph-title">Total Returns</div>
-        <span class="axis-label y-label">%</span>
+        <span class="axis-label y-label" id="yAxisLabel">%</span>
         <span class="axis-label x-label">Date</span>
         <canvas id="returnsChart" width="340" height="300"></canvas>
       </div>
     </div>
   </main>
   <script>
-    // Custom Chart.js plugin for colored axes
     Chart.register({
       id: 'customAxes',
       afterDraw: function(chart) {
         const ctx = chart.ctx;
         const chartArea = chart.chartArea;
         if (!chartArea) return;
-        // Draw vertical axis using light purple
         ctx.save();
         ctx.beginPath();
         ctx.strokeStyle = "#e38be2";
@@ -456,7 +458,6 @@
         ctx.moveTo(chartArea.left + 15, chartArea.top);
         ctx.lineTo(chartArea.left + 15, chartArea.bottom);
         ctx.stroke();
-        // Draw horizontal axis using light purple
         ctx.beginPath();
         ctx.strokeStyle = "#e38be2";
         ctx.lineWidth = 2;
@@ -468,7 +469,7 @@
     });
 
     const ctx = document.getElementById('returnsChart').getContext('2d');
-    new Chart(ctx, {
+    const chart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: [
@@ -525,6 +526,22 @@
         }
       },
       plugins: ['customAxes']
+    });
+
+    // Move the % label even further to the right above the 10 tick
+    window.addEventListener('load', function () {
+      setTimeout(() => {
+        const chartArea = chart.chartArea;
+        const yScale = chart.scales.y;
+        if (chartArea && yScale) {
+          const y10 = yScale.getPixelForValue(10);
+          const label = document.getElementById('yAxisLabel');
+          if (label) {
+            label.style.top = (y10 - 22) + 'px';
+            label.style.left = (chartArea.left + 140) + 'px'; // v29: much further right
+          }
+        }
+      }, 250);
     });
   </script>
 </body>
