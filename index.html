@@ -182,7 +182,7 @@
     .total-returns-area {
       width: 100%;
       display: flex;
-      flex-direction: row; /* Change to row for graph placement */
+      flex-direction: row;
       align-items: flex-start;
       justify-content: center;
       margin-top: 46px;
@@ -231,15 +231,17 @@
       min-width: 370px;
       max-width: 440px;
       width: 100%;
-      background: #fff;
+      background: #f9f7ea;
       border-radius: 16px;
       box-shadow: 0 4px 22px rgba(100, 100, 150, 0.07);
-      padding: 34px 22px 22px 22px;
+      padding: 34px 22px 22px 52px; /* Shift the chart to the right */
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-left: 0;
       margin-right: 0;
+      border: 2px solid #c00; /* Thin red border as in the image */
+      position: relative;
     }
     .graph-title {
       font-size: 1.25rem;
@@ -411,12 +413,38 @@
         </section>
       </div>
       <div class="graph-container">
-        <div class="graph-title">Total Returns Chart</div>
-        <canvas id="returnsChart" width="400" height="320"></canvas>
+        <div class="graph-title">Total Returns</div>
+        <canvas id="returnsChart" width="340" height="300"></canvas>
       </div>
     </div>
   </main>
   <script>
+    // Custom Chart.js plugin for colored axes
+    Chart.register({
+      id: 'customAxes',
+      afterDraw: function(chart) {
+        const ctx = chart.ctx;
+        const chartArea = chart.chartArea;
+        if (!chartArea) return;
+        // Draw vertical axis using light purple
+        ctx.save();
+        ctx.beginPath();
+        ctx.strokeStyle = "#e38be2";
+        ctx.lineWidth = 2;
+        ctx.moveTo(chartArea.left + 15, chartArea.top);
+        ctx.lineTo(chartArea.left + 15, chartArea.bottom);
+        ctx.stroke();
+        // Draw horizontal axis using light purple
+        ctx.beginPath();
+        ctx.strokeStyle = "#e38be2";
+        ctx.lineWidth = 2;
+        ctx.moveTo(chartArea.left + 15, chart.scales.y.getPixelForValue(0));
+        ctx.lineTo(chartArea.right, chart.scales.y.getPixelForValue(0));
+        ctx.stroke();
+        ctx.restore();
+      }
+    });
+
     // Cartesian coordinate graph with Chart.js
     const ctx = document.getElementById('returnsChart').getContext('2d');
     new Chart(ctx, {
@@ -430,11 +458,14 @@
         datasets: [{
           label: '% Change',
           data: [], // No line data yet
-          borderColor: '#2d6cdf',
-          backgroundColor: 'rgba(45,108,223,0.08)',
+          borderColor: "#222",
+          backgroundColor: "rgba(0,0,0,0)",
+          pointBackgroundColor: "#222",
+          pointBorderColor: "#222",
+          pointRadius: 4,
           fill: false,
-          tension: 0.25,
-          pointRadius: 0
+          borderWidth: 2,
+          tension: 0
         }]
       },
       options: {
@@ -442,19 +473,37 @@
         plugins: {
           legend: { display: false }
         },
+        layout: {
+          padding: {
+            left: 16,
+            right: 0,
+            top: 10,
+            bottom: 10
+          }
+        },
         scales: {
           x: {
-            title: { display: true, text: 'Month' },
-            ticks: { color: '#38405a' }
+            title: { display: false },
+            ticks: {
+              color: "#222",
+              font: { size: 12, family: "'Fira Mono', 'Consolas', monospace" }
+            },
+            grid: { display: false }
           },
           y: {
-            title: { display: true, text: '% Change' },
+            title: { display: false },
             min: 0,
             max: 10,
-            ticks: { stepSize: 1, color: '#38405a' }
+            ticks: {
+              stepSize: 1,
+              color: "#222",
+              font: { size: 12, family: "'Fira Mono', 'Consolas', monospace" }
+            },
+            grid: { display: false }
           }
         }
-      }
+      },
+      plugins: ['customAxes']
     });
   </script>
 </body>
