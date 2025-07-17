@@ -226,74 +226,44 @@
     .total-returns-section:hover {
       box-shadow: 0 8px 32px rgba(100, 100, 150, 0.12);
     }
-    .graph-container {
-      min-width: 370px;
-      max-width: 440px;
+    .chart-image-container {
       width: 100%;
-      background: #f9f7ea;
-      border-radius: 16px;
-      box-shadow: 0 4px 22px rgba(100, 100, 150, 0.07);
-      padding: 34px 22px 22px 52px;
+      max-width: 700px;
+      margin: 32px auto 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 0 auto;
-      border: 2px solid #c00;
-      position: relative;
-      margin-top: 0;
-    }
-    .graph-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #3a3d58;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-    .axis-label {
-      position: absolute;
-      color: #222;
-      font-family: 'Fira Mono', 'Consolas', monospace;
-      font-size: 1rem;
-      pointer-events: none;
-      user-select: none;
-      z-index: 10;
-    }
-    .axis-label.y-label {
-      left: 140px;
-      top: 38px;
-      font-weight: bold;
+      border-radius: 16px;
       background: #f9f7ea;
-      padding: 0 4px;
-      letter-spacing: 1px;
+      box-shadow: 0 4px 22px rgba(100, 100, 150, 0.07);
+      padding: 24px;
+      border: 2px solid #c00;
     }
-    .axis-label.x-label {
-      left: 50%;
-      bottom: 12px;
-      transform: translateX(-50%);
-      letter-spacing: 1px;
+    .chart-image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(50,50,50,0.07);
+      background: #fff;
+      display: block;
+      margin: 0 auto;
     }
-    @media (max-width: 1200px) {
-      .total-returns-area {
-        flex-direction: column;
-        align-items: center;
-        gap: 18px;
-      }
-      .graph-container, .total-returns-section {
-        max-width: 97vw;
-      }
+    .chart-caption {
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      font-size: 1.07rem;
+      color: #232334;
+      margin-top: 7px;
+      text-align: center;
+      font-style: italic;
+      opacity: 0.84;
     }
-    @media (max-width: 700px) {
-      .graph-container, .total-returns-section {
-        padding: 17px 6px 12px 6px;
-      }
-      .axis-label.y-label {
-        left: 70px;
-        top: 38px;
+    @media (max-width: 900px) {
+      .chart-image-container {
+        max-width: 98vw;
+        padding: 10px;
       }
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
@@ -403,6 +373,7 @@
         </section>
       </div>
     </div>
+    <!-- Total Returns in the center, chart image below -->
     <div class="total-returns-area">
       <div style="width:100%;max-width:510px;">
         <div class="total-desc">
@@ -436,113 +407,11 @@
           </table>
         </section>
       </div>
-      <div class="graph-container" style="margin-top: -10px;">
-        <div class="graph-title">Total Returns</div>
-        <span class="axis-label y-label" id="yAxisLabel">%</span>
-        <span class="axis-label x-label">Date</span>
-        <canvas id="returnsChart" width="340" height="300"></canvas>
+      <div class="chart-image-container">
+        <img src="chart2.png" alt="Blank Chart with Y-axis from -100% to +100%">
+        <div class="chart-caption">Blank Chart with Y-axis from -100% to +100%</div>
       </div>
     </div>
   </main>
-  <script>
-    Chart.register({
-      id: 'customAxes',
-      afterDraw: function(chart) {
-        const ctx = chart.ctx;
-        const chartArea = chart.chartArea;
-        if (!chartArea) return;
-        ctx.save();
-        ctx.beginPath();
-        ctx.strokeStyle = "#e38be2";
-        ctx.lineWidth = 2;
-        ctx.moveTo(chartArea.left + 15, chartArea.top);
-        ctx.lineTo(chartArea.left + 15, chartArea.bottom);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.strokeStyle = "#e38be2";
-        ctx.lineWidth = 2;
-        ctx.moveTo(chartArea.left + 15, chart.scales.y.getPixelForValue(0));
-        ctx.lineTo(chartArea.right, chart.scales.y.getPixelForValue(0));
-        ctx.stroke();
-        ctx.restore();
-      }
-    });
-
-    const ctx = document.getElementById('returnsChart').getContext('2d');
-    const chart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: [
-          "Jul 2025", "Aug 2025", "Sep 2025", "Oct 2025", "Nov 2025", "Dec 2025",
-          "Jan 2026", "Feb 2026", "Mar 2026", "Apr 2026", "May 2026", "Jun 2026",
-          "Jul 2026", "Aug 2026"
-        ],
-        datasets: [{
-          label: '% Change',
-          data: [],
-          borderColor: "#222",
-          backgroundColor: "rgba(0,0,0,0)",
-          pointBackgroundColor: "#222",
-          pointBorderColor: "#222",
-          pointRadius: 4,
-          fill: false,
-          borderWidth: 2,
-          tension: 0
-        }]
-      },
-      options: {
-        responsive: false,
-        plugins: {
-          legend: { display: false }
-        },
-        layout: {
-          padding: {
-            left: 16,
-            right: 0,
-            top: 10,
-            bottom: 10
-          }
-        },
-        scales: {
-          x: {
-            title: { display: false },
-            ticks: {
-              color: "#222",
-              font: { size: 12, family: "'Fira Mono', 'Consolas', monospace" }
-            },
-            grid: { display: false }
-          },
-          y: {
-            title: { display: false },
-            min: 0,
-            max: 10,
-            ticks: {
-              stepSize: 1,
-              color: "#222",
-              font: { size: 12, family: "'Fira Mono', 'Consolas', monospace" }
-            },
-            grid: { display: false }
-          }
-        }
-      },
-      plugins: ['customAxes']
-    });
-
-    // Move the % label even further to the right above the 10 tick
-    window.addEventListener('load', function () {
-      setTimeout(() => {
-        const chartArea = chart.chartArea;
-        const yScale = chart.scales.y;
-        if (chartArea && yScale) {
-          const y10 = yScale.getPixelForValue(10);
-          const label = document.getElementById('yAxisLabel');
-          if (label) {
-            label.style.top = (y10 - 22) + 'px';
-            label.style.left = (chartArea.left + 140) + 'px'; // v29: much further right
-          }
-        }
-      }, 250);
-    });
-  </script>
 </body>
 </html>
