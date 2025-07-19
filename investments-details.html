@@ -2,200 +2,249 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Investments Details</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Long Term Investments Details</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Chart.js Data Labels Plugin for percentage labels -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <style>
     body {
       font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-      background: #f9fafb;
-      margin: 0;
-      min-height: 100vh;
-      padding: 0;
-    }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 6px 28px rgba(100, 100, 150, 0.09);
-      padding: 32px 24px;
+      padding: 32px;
+      background: #f7fafd;
+      color: #222;
     }
     h1 {
       font-size: 2rem;
       margin-top: 0;
-      color: #2d355d;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
-    .back-link {
-      display: inline-block;
-      margin-bottom: 22px;
-      text-decoration: none;
-      background: #e3ebfb;
-      color: #2d6cdf;
-      padding: 7px 18px;
-      border-radius: 6px;
-      font-weight: 500;
-      transition: background 0.18s;
+    .section {
+      margin-bottom: 28px;
     }
-    .back-link:hover {
-      background: #c7d6ef;
+    .charts-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      margin-top: 28px;
+      margin-bottom: 48px;
+      justify-content: flex-start;
     }
-    .trades-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 0 auto 8px auto;
-      background: #fafaff;
-      border-radius: 6px;
-      overflow: hidden;
-      font-size: 1rem;
-      box-shadow: 0 0 0 1px #e8eaf6;
+    .chart-container {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.08);
+      padding: 22px 18px 12px 18px;
+      flex: 1 1 320px;
+      min-width: 320px;
+      max-width: 430px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .trades-table th, .trades-table td {
-      padding: 10px 8px;
-      border-bottom: 1px solid #e8eaf6;
-      font-size: 1rem;
+    .chart-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
       text-align: center;
     }
-    .trades-table th {
-      background: #edf2fb;
-      color: #22223b;
+    ul.investments-list {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    ul.investments-list li {
+      font-size: 1.05rem;
+      margin-bottom: 2px;
+    }
+    .section-title {
+      font-size: 1.22rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+      margin-top: 18px;
+    }
+    .stock-table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 24px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      overflow: hidden;
+    }
+    .stock-table th, .stock-table td {
+      padding: 7px 13px;
+      text-align: left;
+      font-size: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    .stock-table th {
+      background: #e9e9f9;
       font-weight: 600;
     }
-    .trades-table td {
-      color: #38405a;
-      font-family: 'Fira Mono', 'Consolas', monospace;
-    }
-    .trades-table tr:last-child td {
+    .stock-table tr:last-child td {
       border-bottom: none;
-    }
-    .placeholder {
-      color: #b7b8c7;
-      font-size: 1.08rem;
-      font-style: italic;
-      margin-top: 40px;
-      text-align: center;
-    }
-    @media (max-width: 700px) {
-      .container {
-        padding: 10px 2px;
-      }
-      .trades-table th, .trades-table td {
-        padding: 6px 2px;
-        font-size: 0.95rem;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a href="index.html" class="back-link">&larr; Back to Home</a>
-    <h1>Investments Details</h1>
-    <table class="trades-table">
+  <h1>Long Term Investments Details</h1>
+
+  <section class="section">
+    <div class="section-title">Current Holdings</div>
+    <table class="stock-table">
       <thead>
         <tr>
-          <th>Stock</th>
+          <th>Stock Name</th>
           <th>Ticker</th>
-          <th>Open Date</th>
-          <th>Close Date</th>
-          <th>Open Price</th>
-          <th>Close Price</th>
-          <th>Weighting</th>
-          <th>% Change</th>
+          <th>Country</th>
+          <th>Market Cap</th>
+          <th>Sector</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Microsoft</td>
-          <td>MFST</td>
-          <td>17/07/2025</td>
-          <td>N/A</td>
-          <td>$512.91</td>
-          <td>N/A</td>
-          <td>15%</td>
-          <td>N/A</td>
+          <td>MSFT</td>
+          <td>USA</td>
+          <td>Large</td>
+          <td>Technology</td>
         </tr>
         <tr>
           <td>CVS Health</td>
           <td>CVS</td>
-          <td>17/07/2025</td>
-          <td>N/A</td>
-          <td>$63.31</td>
-          <td>N/A</td>
-          <td>15%</td>
-          <td>N/A</td>
-        </tr>
-        <tr>
-          <td>Penguin Solutions</td>
-          <td>PENG</td>
-          <td>17/07/2025</td>
-          <td>N/A</td>
-          <td>$24.99</td>
-          <td>N/A</td>
-          <td>10%</td>
-          <td>N/A</td>
-        </tr>
-        <tr>
-          <td>Air Canada</td>
-          <td>AC</td>
-          <td>17/07/2025</td>
-          <td>N/A</td>
-          <td>$15.62</td>
-          <td>N/A</td>
-          <td>10%</td>
-          <td>N/A</td>
-        </tr>
-        <tr>
-          <td>Harmony Gold Mining</td>
-          <td>HMY</td>
-          <td>17/07/2025</td>
-          <td>N/A</td>
-          <td>$13.91</td>
-          <td>N/A</td>
-          <td>10%</td>
-          <td>N/A</td>
-        </tr>
-        <tr>
-          <td>Greif (Class A)</td>
-          <td>GEF</td>
-          <td>17/07/2025</td>
-          <td>N/A</td>
-          <td>$65.44</td>
-          <td>N/A</td>
-          <td>10%</td>
-          <td>N/A</td>
+          <td>USA</td>
+          <td>Large</td>
+          <td>Healthcare</td>
         </tr>
         <tr>
           <td>BYD</td>
-          <td>BYD</td>
-          <td>17/07/2025</td>
-          <td>N/A</td>
-          <td>$95.44</td>
-          <td>N/A</td>
-          <td>10%</td>
-          <td>N/A</td>
+          <td>BYDDF</td>
+          <td>China</td>
+          <td>Large</td>
+          <td>Automotive</td>
         </tr>
         <tr>
           <td>Artisan Partners Asset Management</td>
           <td>APAM</td>
-          <td>17/07/2025</td>
-          <td>N/A</td>
-          <td>$46.71</td>
-          <td>N/A</td>
-          <td>10%</td>
-          <td>N/A</td>
+          <td>USA</td>
+          <td>Mid</td>
+          <td>Financials</td>
+        </tr>
+        <tr>
+          <td>Greif (Class A)</td>
+          <td>GEF</td>
+          <td>USA</td>
+          <td>Mid</td>
+          <td>Materials</td>
+        </tr>
+        <tr>
+          <td>Harmony Gold Mining</td>
+          <td>HMY</td>
+          <td>South Africa</td>
+          <td>Mid</td>
+          <td>Mining</td>
         </tr>
         <tr>
           <td>Mastercard</td>
           <td>MA</td>
-          <td>17/07/2025</td>
-          <td>N/A</td>
-          <td>$553.78</td>
-          <td>N/A</td>
-          <td>10%</td>
-          <td>N/A</td>
+          <td>USA</td>
+          <td>Large</td>
+          <td>Financials</td>
+        </tr>
+        <tr>
+          <td>Penguin Solutions</td>
+          <td>—</td>
+          <td>USA</td>
+          <td>Small</td>
+          <td>IT Solutions</td>
         </tr>
       </tbody>
     </table>
+  </section>
+
+  <div class="charts-row">
+    <div class="chart-container">
+      <div class="chart-title">Geographic Weightings</div>
+      <canvas id="geoPie"></canvas>
+    </div>
+    <div class="chart-container">
+      <div class="chart-title">Market Cap Weightings</div>
+      <canvas id="capPie"></canvas>
+    </div>
+    <div class="chart-container">
+      <div class="chart-title">Sector Weightings</div>
+      <canvas id="sectorPie"></canvas>
+    </div>
   </div>
+
+  <script>
+    // Pie chart data
+    const geoData = {
+      labels: ["USA", "China", "South Africa"],
+      datasets: [{
+        data: [6, 1, 1], // Microsoft, CVS, APAM, GEF, MA, Penguin (USA), BYD (China), Harmony Gold (South Africa)
+        backgroundColor: ["#0073e6", "#ffbc42", "#80b918"]
+      }]
+    };
+
+    const capData = {
+      labels: ["Large Cap", "Mid Cap", "Small Cap"],
+      datasets: [{
+        data: [4, 3, 1], // Large: MSFT, MA, CVS, BYD; Mid: APAM, GEF, Harmony Gold; Small: Penguin Solutions
+        backgroundColor: ["#1b9aaa", "#f39237", "#a1e44d"]
+      }]
+    };
+
+    const sectorData = {
+      labels: ["Technology", "Healthcare", "Automotive", "Financials", "Materials", "Mining", "IT Solutions"],
+      datasets: [{
+        data: [1, 1, 1, 2, 1, 1, 1], // Tech: MSFT; Healthcare: CVS; Automotive: BYD; Financials: MA, APAM; Materials: GEF; Mining: Harmony; IT: Penguin
+        backgroundColor: [
+          "#3a86ff", "#ff006e", "#fb5607", "#8338ec", "#ffbe0b", "#43aa8b", "#a3a380"
+        ]
+      }]
+    };
+
+    // Chart.js options for all pies, enable datalabels plugin
+    const pieOptions = {
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { font: { size: 15 } }
+        },
+        datalabels: {
+          color: '#222',
+          font: { weight: 'bold', size: 15 },
+          formatter: function(value, ctx) {
+            const total = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+            const pct = ((value / total) * 100).toFixed(1);
+            return pct + '%';
+          }
+        }
+      }
+    };
+
+    Chart.register(window.ChartDataLabels);
+
+    // Render all charts
+    new Chart(document.getElementById('geoPie'), {
+      type: 'pie',
+      data: geoData,
+      options: pieOptions,
+      plugins: [ChartDataLabels]
+    });
+    new Chart(document.getElementById('capPie'), {
+      type: 'pie',
+      data: capData,
+      options: pieOptions,
+      plugins: [ChartDataLabels]
+    });
+    new Chart(document.getElementById('sectorPie'), {
+      type: 'pie',
+      data: sectorData,
+      options: pieOptions,
+      plugins: [ChartDataLabels]
+    });
+  </script>
 </body>
 </html>
