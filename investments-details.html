@@ -197,5 +197,89 @@
       </tbody>
     </table>
   </div>
+  <div class="charts-row" style="display: flex; flex-wrap: wrap; gap: 48px; margin-top: 0; margin-bottom: 48px; justify-content: flex-start;">
+  <div class="chart-container" style="background:#fff;border-radius:14px;box-shadow:0 2px 14px rgba(0,0,0,0.08);padding:22px 18px 12px 18px;flex:1 1 320px;min-width:320px;max-width:430px;display:flex;flex-direction:column;align-items:center;">
+    <div class="chart-title" style="font-size:1.2rem;font-weight:700;margin-bottom:16px;text-align:center;">Geographic Weightings</div>
+    <canvas id="geoPie"></canvas>
+  </div>
+  <div class="chart-container" style="background:#fff;border-radius:14px;box-shadow:0 2px 14px rgba(0,0,0,0.08);padding:22px 18px 12px 18px;flex:1 1 320px;min-width:320px;max-width:430px;display:flex;flex-direction:column;align-items:center;">
+    <div class="chart-title" style="font-size:1.2rem;font-weight:700;margin-bottom:16px;text-align:center;">Market Cap Weightings</div>
+    <canvas id="capPie"></canvas>
+  </div>
+  <div class="chart-container" style="background:#fff;border-radius:14px;box-shadow:0 2px 14px rgba(0,0,0,0.08);padding:22px 18px 12px 18px;flex:1 1 320px;min-width:320px;max-width:430px;display:flex;flex-direction:column;align-items:center;">
+    <div class="chart-title" style="font-size:1.2rem;font-weight:700;margin-bottom:16px;text-align:center;">Sector Weightings</div>
+    <canvas id="sectorPie"></canvas>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+<script>
+  // Pie chart data
+  const geoData = {
+    labels: ["USA", "China", "South Africa"],
+    datasets: [{
+      data: [6, 1, 1],
+      backgroundColor: ["#0073e6", "#ffbc42", "#80b918"]
+    }]
+  };
+
+  const capData = {
+    labels: ["Large Cap", "Mid Cap", "Small Cap"],
+    datasets: [{
+      data: [4, 3, 1],
+      backgroundColor: ["#1b9aaa", "#f39237", "#a1e44d"]
+    }]
+  };
+
+  const sectorData = {
+    labels: ["Technology", "Healthcare", "Automotive", "Financials", "Materials", "Mining", "IT Solutions"],
+    datasets: [{
+      data: [1, 1, 1, 2, 1, 1, 1],
+      backgroundColor: [
+        "#3a86ff", "#ff006e", "#fb5607", "#8338ec", "#ffbe0b", "#43aa8b", "#a3a380"
+      ]
+    }]
+  };
+
+  // Chart.js options for all pies, enable datalabels plugin
+  const pieOptions = {
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { font: { size: 15 } }
+      },
+      datalabels: {
+        color: '#222',
+        font: { weight: 'bold', size: 15 },
+        formatter: function(value, ctx) {
+          const total = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+          const pct = ((value / total) * 100).toFixed(1);
+          return pct + '%';
+        }
+      }
+    }
+  };
+
+  Chart.register(window.ChartDataLabels);
+
+  new Chart(document.getElementById('geoPie'), {
+    type: 'pie',
+    data: geoData,
+    options: pieOptions,
+    plugins: [ChartDataLabels]
+  });
+  new Chart(document.getElementById('capPie'), {
+    type: 'pie',
+    data: capData,
+    options: pieOptions,
+    plugins: [ChartDataLabels]
+  });
+  new Chart(document.getElementById('sectorPie'), {
+    type: 'pie',
+    data: sectorData,
+    options: pieOptions,
+    plugins: [ChartDataLabels]
+  });
+</script>
 </body>
 </html>
