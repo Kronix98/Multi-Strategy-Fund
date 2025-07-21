@@ -1,1 +1,111 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fund Timeline</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      background: #f8fafd;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .timeline-container {
+      max-width: 950px;
+      margin: 70px auto 0 auto;
+      padding: 0 24px;
+      position: relative;
+    }
+    .timeline-line {
+      position: relative;
+      top: 90px;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #7a8cff 0%, #eaeaea 100%);
+      border-radius: 2px;
+      margin-bottom: 120px;
+    }
+    .timeline-date {
+      position: absolute;
+      left: 0;
+      top: 55px;
+      font-size: 1.13rem;
+      font-weight: 600;
+      color: #3a45c7;
+      background: #e3ebff;
+      padding: 6px 18px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(60,80,220,0.09);
+      z-index: 2;
+    }
+    .timeline-bubble {
+      position: absolute;
+      left: 0;
+      top: 115px;
+      background: #fff;
+      border: 1.5px solid #e3ebff;
+      border-radius: 18px;
+      padding: 16px 26px;
+      min-width: 280px;
+      max-width: 400px;
+      font-size: 1.07rem;
+      color: #222;
+      box-shadow: 0 2px 12px rgba(60,80,220,0.08);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+    }
+    .timeline-bubble:before {
+      content: "";
+      position: absolute;
+      left: 32px;
+      top: -16px;
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 16px solid #fff;
+      filter: drop-shadow(0 -2px 2px #e3ebff);
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.1rem;
+      margin-top: 44px;
+      color: #212c74;
+      margin-bottom: 18px;
+    }
+    @media (max-width: 700px) {
+      .timeline-container {
+        padding: 0 6px;
+      }
+      .timeline-date, .timeline-bubble {
+        min-width: 180px;
+        font-size: 0.97rem;
+        padding: 7px 12px;
+      }
+      .timeline-bubble {
+        left: 0;
+        top: 105px;
+        min-width: 180px;
+        max-width: 95vw;
+        padding: 10px 14px;
+      }
+      .timeline-bubble:before {
+        left: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Fund Timeline</h1>
+  <div class="timeline-container">
+    <div class="timeline-date">21/07/2025</div>
+    <div class="timeline-line"></div>
+    <div class="timeline-bubble">
+      Fund commences without forex trading, meaning earnings and long term are weighted 50/50 for the meantime.
+    </div>
+  </div>
+</body>
+</html>
