@@ -44,6 +44,29 @@
       text-shadow: 0 2px 8px rgba(100, 100, 150, 0.05);
       font-family: 'Playfair Display', serif;
     }
+    /* Timeline Button Styles */
+    .timeline-btn-topright {
+      position: absolute;
+      top: 18px;
+      right: 32px;
+      z-index: 1002;
+    }
+    .timeline-btn-topright a {
+      background: #fff;
+      color: #232334;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      transition: background 0.18s;
+      display: inline-block;
+    }
+    .timeline-btn-topright a:hover {
+      background: #f2f4fc;
+    }
     .top-row-container {
       margin-top: 40px;
       width: 100%;
@@ -245,11 +268,25 @@
         padding: 10px;
       }
     }
+    @media (max-width: 700px) {
+      .timeline-btn-topright {
+        right: 8px;
+        top: 8px;
+      }
+      .timeline-btn-topright a {
+        padding: 8px 14px;
+        font-size: 0.94rem;
+      }
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
+    <!-- Timeline button added here -->
+    <div class="timeline-btn-topright">
+      <a href="timeline.html">Timeline</a>
+    </div>
     <h1>Multi Strategy Fund</h1>
     <div class="subtitle">Traded by Milo Goldstein</div>
   </header>
