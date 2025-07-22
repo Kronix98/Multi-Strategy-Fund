@@ -76,6 +76,24 @@
       color: #212c74;
       margin-bottom: 18px;
     }
+    .back-btn {
+      display: inline-block;
+      margin: 30px 0 0 30px;
+      background: #fff;
+      color: #2d6cdf;
+      border: 1px solid #e3ebff;
+      border-radius: 7px;
+      padding: 9px 22px;
+      font-weight: 500;
+      font-size: 1.08rem;
+      text-decoration: none;
+      box-shadow: 0 2px 7px rgba(60,80,220,0.06);
+      transition: background 0.18s, color 0.18s;
+    }
+    .back-btn:hover {
+      background: #e3ebff;
+      color: #183f7b;
+    }
     @media (max-width: 700px) {
       .timeline-container {
         padding: 0 6px;
@@ -95,10 +113,16 @@
       .timeline-bubble:before {
         left: 14px;
       }
+      .back-btn {
+        margin: 18px 0 0 10px;
+        padding: 7px 14px;
+        font-size: 0.97rem;
+      }
     }
   </style>
 </head>
 <body>
+  <a href="index.html" class="back-btn">&larr; Back to Home</a>
   <h1>Fund Timeline</h1>
   <div class="timeline-container">
     <div class="timeline-date">21/07/2025</div>
