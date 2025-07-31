@@ -44,7 +44,6 @@
       text-shadow: 0 2px 8px rgba(100, 100, 150, 0.05);
       font-family: 'Playfair Display', serif;
     }
-    /* Timeline Button Styles */
     .timeline-btn-topright {
       position: absolute;
       top: 18px;
@@ -283,7 +282,6 @@
 </head>
 <body>
   <header>
-    <!-- Timeline button added here -->
     <div class="timeline-btn-topright">
       <a href="timeline.html">Timeline</a>
     </div>
@@ -393,7 +391,6 @@
         </section>
       </div>
     </div>
-    <!-- Total Returns in the center, chartjs below -->
     <div class="total-returns-area">
       <div style="width:100%;max-width:510px;">
         <div class="total-desc">
@@ -427,19 +424,25 @@
           </table>
         </section>
       </div>
+      <!-- Chart at the bottom of the page -->
       <div class="chartjs-container">
         <canvas id="monthlyReturnsChart" width="1200" height="700"></canvas>
       </div>
     </div>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    // Generate monthly labels from July 2025 to July 2026
+    // X axis labels: July 2025, August 2025, ... July 2026
     const months = [
       "Jul 2025","Aug 2025","Sep 2025","Oct 2025","Nov 2025","Dec 2025",
       "Jan 2026","Feb 2026","Mar 2026","Apr 2026","May 2026","Jun 2026","Jul 2026"
     ];
-    // Fill chart data: Jul 2025 gets 1.05, rest are null
-    const data = [1.05, ...Array(months.length - 1).fill(null)];
+
+    // The data: 
+    // - 0 for Jul 2025 (start at the origin where x and y meet)
+    // - 1.05 for Aug 2025 (draw line up to this)
+    // - null for the rest (line stops)
+    const data = [0, 1.05, ...Array(months.length - 2).fill(null)];
 
     const ctx = document.getElementById('monthlyReturnsChart').getContext('2d');
     const chart = new Chart(ctx, {
@@ -456,9 +459,9 @@
             pointBackgroundColor: '#2d6cdf',
             pointBorderColor: '#fff',
             pointBorderWidth: 2,
-            spanGaps: true,
+            spanGaps: false,
             fill: false,
-            tension: 0.1
+            tension: 0 // straight line
           }
         ]
       },
