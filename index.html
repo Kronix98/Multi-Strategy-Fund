@@ -316,7 +316,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>Jul 2025</td><td>—</td></tr>
+              <tr><td>Jul 2025</td><td>N/A</td></tr>
               <tr><td>Aug 2025</td><td>—</td></tr>
               <tr><td>Sep 2025</td><td>—</td></tr>
               <tr><td>Oct 2025</td><td>—</td></tr>
@@ -345,7 +345,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>Jul 2025</td><td>—</td></tr>
+              <tr><td>Jul 2025</td><td>-1.36%</td></tr>
               <tr><td>Aug 2025</td><td>—</td></tr>
               <tr><td>Sep 2025</td><td>—</td></tr>
               <tr><td>Oct 2025</td><td>—</td></tr>
@@ -374,7 +374,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>Jul 2025</td><td>—</td></tr>
+              <tr><td>Jul 2025</td><td>3.46%</td></tr>
               <tr><td>Aug 2025</td><td>—</td></tr>
               <tr><td>Sep 2025</td><td>—</td></tr>
               <tr><td>Oct 2025</td><td>—</td></tr>
@@ -409,7 +409,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>Jul 2025</td><td>—</td></tr>
+              <tr><td>Jul 2025</td><td>1.05%</td></tr>
               <tr><td>Aug 2025</td><td>—</td></tr>
               <tr><td>Sep 2025</td><td>—</td></tr>
               <tr><td>Oct 2025</td><td>—</td></tr>
@@ -438,21 +438,29 @@
       "Jul 2025","Aug 2025","Sep 2025","Oct 2025","Nov 2025","Dec 2025",
       "Jan 2026","Feb 2026","Mar 2026","Apr 2026","May 2026","Jun 2026","Jul 2026"
     ];
-    const data = Array(months.length).fill(null); // No data yet
+    // Fill chart data: Jul 2025 gets 1.05, rest are null
+    const data = [1.05, ...Array(months.length - 1).fill(null)];
 
     const ctx = document.getElementById('monthlyReturnsChart').getContext('2d');
     const chart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: months,
-        datasets: [{
-          label: '',
-          data: data,
-          borderColor: 'rgba(0,0,0,0)',
-          backgroundColor: 'rgba(0,0,0,0)',
-          pointRadius: 0,
-          fill: false
-        }]
+        datasets: [
+          {
+            label: 'Total Returns',
+            data: data,
+            borderColor: '#2d6cdf',
+            backgroundColor: 'rgba(45,108,223,0.12)',
+            pointRadius: 7,
+            pointBackgroundColor: '#2d6cdf',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            spanGaps: true,
+            fill: false,
+            tension: 0.1
+          }
+        ]
       },
       options: {
         plugins: {
@@ -501,7 +509,7 @@
         },
         elements: {
           line: {
-            borderWidth: 2
+            borderWidth: 3
           }
         },
         responsive: false,
